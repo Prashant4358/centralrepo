@@ -1,0 +1,28 @@
+---
+- name: This unistalled httpd pkg
+  hosts: all 
+  become: true
+  tasks:
+  - name: ensure service is stop 
+    service:
+      name: httpd
+      state: stopped
+    when: ansible_os_family == 'RedHat'
+
+  - name: This unstalled httpd pkg 
+    yum:
+      name: httpd
+      state: absent 
+    when: ansible_os_family == 'RedHat'
+
+  - name: ensure apache service stops 
+    service:
+      name: apache2
+      state: stopped 
+    when: ansible_os_family == 'Debian'
+
+  - name: this unistalled apache2 service 
+    apt:
+      name: apache2
+      state: absent 
+    when: ansible_os_family == 'Debian'

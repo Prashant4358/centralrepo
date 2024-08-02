@@ -1,0 +1,9 @@
+---
+- name: this playbook creates directory 
+  hosts: all 
+  become: true
+  tasks:
+  - name: this creates directory 
+    file:
+      path: /home/ansadmin/dir1 dir2
+      state: directory 

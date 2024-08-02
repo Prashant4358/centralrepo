@@ -1,0 +1,29 @@
+---
+- name: This playbook install httpd server
+  hosts: all 
+  become: true
+  tasks:
+  - name: this install httpd pkg 
+    yum: 
+      name: httpd
+      state: present
+    when: ansible_os_family == 'RedHat'
+
+  - name: ensure service is started 
+    service:
+      name: httpd
+      state: started 
+    when: ansible_os_family == 'RedHat'
+
+  - name: this install apache2 pkg 
+    apt:
+      name: apache2
+      state: present 
+    when: asible_os_family == 'Debian'
+
+  - name: ensure service apache2 started
+    service:
+      name: apache2 
+      state: started
+    when: ansible_os_family == 'Debian'
+

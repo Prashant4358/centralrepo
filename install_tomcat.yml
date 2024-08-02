@@ -1,0 +1,29 @@
+---
+- name: this install tomcat 
+  hosts: webservers[0]
+  become: true
+  tasks:
+  - name: This install java
+    yum:
+      name: java
+      state: present
+   
+  - name: to download tomcat server
+    get_url:
+      url:  https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.26/bin/apache-tomcat-10.1.26.tar.gz
+      dest: /opt
+
+  - name: to exstract tomcat file 
+    unarchive:
+      src: /opt/apache-tomcat-10.1.26.tar.gz
+      dest: /opt
+      remote_src: yes
+
+  - name: to give executable permission 
+    file:
+      path: /opt/apache-tomcat-10.1.26/bin/startup.sh 
+      mode: 0777
+
+  - name: to run .sh file
+    shell:  /opt/apache-tomcat-10.1.26/bin/startup.sh
+  

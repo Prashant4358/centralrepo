@@ -1,0 +1,20 @@
+---
+- name: This playbook creates user
+  hosts: all
+  become: true
+  tasks:
+  - name: to creates user
+    user:
+      name: hari
+      state: present 
+
+  - name: this install httpd pkg
+    yum:
+      name: httpd
+      state: present
+      
+
+  - name: ensure service httpd started
+    service:
+      name: httpd
+      state: started   

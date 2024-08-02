@@ -1,0 +1,11 @@
+---
+- name: This creates user
+  hosts: webservers[0]
+  become: true
+  tasks:
+  - name: create user
+    user:
+      name: raj
+      state: present
+
+

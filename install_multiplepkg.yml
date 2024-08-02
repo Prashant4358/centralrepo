@@ -1,0 +1,9 @@
+--- 
+- name: this playbook install multiple pkg 
+  hosts: all
+  become: true
+  tasks: 
+  - name: this install multiple pkg 
+    yum:
+      name: ['httpd','tree','git']
+      state: present 

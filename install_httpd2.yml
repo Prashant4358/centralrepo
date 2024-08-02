@@ -1,0 +1,30 @@
+---
+- name: This playbook install pkg
+  hosts: all
+  become: true
+  tasks:
+  - name: this install packges
+    yum:
+     name: httpd
+     state: present
+    when: ansible_os_family == 'RedHat'
+
+  - name: ensure service started
+    service:
+     name: httpd
+     state: started
+    when: ansible_os_family == 'RedHat'
+
+  - name: this install apach2
+    apt:
+     name: apache2
+     state: present
+    when: ansible_os_family == 'Debian'
+
+  - name: ensure service started
+    service:
+     name: apt
+     state: started
+    when: ansible_os_family == 'Debian'
+
+
