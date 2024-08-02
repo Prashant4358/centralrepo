@@ -1,0 +1,6 @@
+---
+- name: this galaxy playbook 
+  hosts: all
+  become: true
+  roles: 
+    - setup-apache-role 
